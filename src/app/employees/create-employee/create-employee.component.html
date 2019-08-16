@@ -8,8 +8,7 @@
           <div class="form-group">
             <label for="fullName">Full Name</label>
             <input name="fname" id="fullName" type="text"
-                  [(ngModel)]="fname" class="form-control"
-                  disabled/>
+                  [(ngModel)]="fname" class="form-control"/>
           </div>
 
           <div class="form-group">
@@ -37,6 +36,16 @@
                           [(ngModel)]="gender"/>Female
               </label>
             </div>
+          </div>
+
+          <!-- checkbox "isActive" -->
+          <div class="form-group">
+              <div class="form-control">
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="isActive"
+                          [(ngModel)]="isActive"/>Is Active
+                </label>
+              </div>
           </div>
 
         </div>

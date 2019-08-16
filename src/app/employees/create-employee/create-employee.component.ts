@@ -7,8 +7,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
+  // radio checked
   gender = 'male';
-  fname = 'Ngo Trung Trong';
+
+  // default value
+  //fname = 'Ngo Trung Trong';
+
+  // checkbox checked
+  isActive = true;
   constructor() { }
 
   ngOnInit() {
