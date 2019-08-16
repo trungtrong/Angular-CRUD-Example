@@ -17,8 +17,12 @@ export class CreateEmployeeComponent implements OnInit {
   // checkbox checked
   isActive = true;
 
-  // select list (dropdown list) : Department
-  department = '1';
+  departments: Department[] = [
+    { id: 1, name: 'Help Desk'},
+    { id: 2, name: 'HR'},
+    { id: 3, name: 'IT'},
+    { id: 4, name: 'Payroll'}
+  ];
 
   constructor() { }
 
