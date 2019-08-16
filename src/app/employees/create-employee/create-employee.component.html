@@ -8,14 +8,37 @@
           <div class="form-group">
             <label for="fullName">Full Name</label>
             <input name="fname" id="fullName" type="text"
-                  [(ngModel)]="fname" class="form-control"/>
+                  [(ngModel)]="fname" class="form-control"
+                  disabled/>
           </div>
 
           <div class="form-group">
               <label for="email">Email</label>
               <input name="email" id="email" type="text"
                      [(ngModel)]="email" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+              <label for="phoneNumber">Phone Number</label>
+              <input name="phoneNumber" id="phoneNumber" type="text"
+                     [(ngModel)]="phoneNumber" class="form-control"/>
+          </div>
+
+          <!-- radio : male and female -->
+          <div class="form-group">
+            <label>Gender</label>
+            <div class="form-control">
+              <label class="radio-inline">
+                  <input type="radio" name="gender" value="male"
+                        [(ngModel)]="gender"/>Male
+              </label>
+              <label class="radio-inline">
+                  <input type="radio" name="gender" value="female"
+                          [(ngModel)]="gender"/>Female
+              </label>
             </div>
+          </div>
+
         </div>
 
         <div class="panel-footer">
