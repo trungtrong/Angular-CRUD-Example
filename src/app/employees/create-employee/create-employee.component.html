@@ -71,8 +71,27 @@
             </div>
           </div>
 
+          <!-- 10. Display/Hide image of employee: photoPath -->
+          <div class="form-group">
+            <label for="photoPath">Photo path</label>
+            <input name="photoPath" id="photoPath" type="text"
+                   [(ngModel)]="photoPath" class="form-control"/>
+          </div>
+            <!-- 10.2 : Show/Hide Button-->
+          <div>
+            <button type="button" class="btn btn-primary"
+                    (click)="togglePreviewPhoto()">
+              {{ buttonStatus }} Preview
+            </button>
+          </div>
+
+          <div class="form-group">
+            <img [src]="photoPath" height="200" weight="200" *ngIf="previewPhoto" />
+          </div>
+
         </div>
 
+        <!-- Button Save: to retrieve all the data from the above forms -->
         <div class="panel-footer">
           <button type="submit" class="btn btn-primary">Save</button>
         </div>

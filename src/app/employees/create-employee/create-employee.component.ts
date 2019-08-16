@@ -30,6 +30,9 @@ export class CreateEmployeeComponent implements OnInit {
 
   datePickerConfig: Partial<BsDatepickerConfig>;
 
+  // 10. Display and hide image of empoyee
+  previewPhoto =  false;
+  buttonStatus = 'Show';
   constructor() {
     this.datePickerConfig = Object.assign({},
       {
@@ -45,5 +48,11 @@ export class CreateEmployeeComponent implements OnInit {
   onSubmit(empForm: NgForm) {
     console.log(empForm.value);
     console.log(empForm);
+  }
+
+  togglePreviewPhoto() {
+    this.previewPhoto = !this.previewPhoto;
+    this.buttonStatus =
+      this.previewPhoto === true ? 'Hide' : 'Show';
   }
 }
