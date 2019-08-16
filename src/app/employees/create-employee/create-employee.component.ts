@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from 'src/app/models/department';
 
+// Config themme color
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
+
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
@@ -24,7 +28,16 @@ export class CreateEmployeeComponent implements OnInit {
     { id: 4, name: 'Payroll'}
   ];
 
-  constructor() { }
+  datePickerConfig: Partial<BsDatepickerConfig>;
+
+  constructor() {
+    this.datePickerConfig = Object.assign({},
+      {
+        containerClass: 'theme-dark-blue',
+        showWeekNumbers: false,
+        dateInputFormat: 'DD/MM/YYYY'
+      });
+  }
 
   ngOnInit() {
   }
