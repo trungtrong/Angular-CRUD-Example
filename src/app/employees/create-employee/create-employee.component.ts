@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Department } from 'src/app/models/department';
 
 @Component({
   selector: 'app-create-employee',
@@ -11,10 +12,14 @@ export class CreateEmployeeComponent implements OnInit {
   gender = 'male';
 
   // default value
-  //fname = 'Ngo Trung Trong';
+  // fname = 'Ngo Trung Trong';
 
   // checkbox checked
   isActive = true;
+
+  // select list (dropdown list) : Department
+  department = '1';
+
   constructor() { }
 
   ngOnInit() {

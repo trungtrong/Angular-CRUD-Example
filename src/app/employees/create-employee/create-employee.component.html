@@ -38,7 +38,7 @@
             </div>
           </div>
 
-          <!-- checkbox "isActive" -->
+          <!-- checkbox "isActive" field -->
           <div class="form-group">
               <div class="form-control">
                 <label class="checkbox-inline">
@@ -46,6 +46,20 @@
                           [(ngModel)]="isActive"/>Is Active
                 </label>
               </div>
+          </div>
+
+          <!-- dropdown list: Department field -->
+          <div class="form-group">
+            <label for="department">
+              Department
+            </label>
+            <select id="departmnet" name="department"
+                    [(ngModel)]="department" class="form-control">
+              <option value="1">Help Desk</option>
+              <option value="2">HR</option>
+              <option value="3">IT</option>
+              <option value="4">Paroll</option>
+            </select>
           </div>
 
         </div>
