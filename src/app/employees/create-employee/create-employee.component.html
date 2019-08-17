@@ -5,21 +5,20 @@
         </div>
 
         <div class="panel-body">
-          <div class="form-group">
-            <label for="fullName">Full Name</label>
+
+          <div class="form-group"
+              [class.has-error]="fullNameControl.invalid && fullNameControl.touched"
+              [class.has-success]="fullNameControl.valid">
+            <label for="fullName" class="control-label">Full Name</label>
             <input required name="fullName"
                   id="fullName" type="text"
                   [(ngModel)]="fullName" class="form-control"
                   #fullNameControl="ngModel" />
+            <span class="help-block"
+              *ngIf="fullNameControl.invalid && fullNameControl.touched">
+                Full Name is required
+            </span>
           </div>
-
-          <!-- Display the value of form validation property -->
-          <p>touched: {{ fullNameControl.touched }}- {{ employeeForm.touched }}</p>
-          <p>untouched: {{ fullNameControl.untouched }} - {{ employeeForm.untouched }}</p>
-          <p>pristine: {{ fullNameControl.pristine }} - {{ employeeForm.pristine }}</p>
-          <p>dirty: {{ fullNameControl.dirty }} - {{ employeeForm.dirty }}</p>
-          <p>valid: {{ fullNameControl.valid }} - {{ employeeForm.valid }}</p>
-          <p>invalid: {{ fullNameControl.invalid }} - {{ employeeForm.invalid }}</p>
 
           <div class="form-group">
               <label for="email">Email</label>
@@ -104,7 +103,8 @@
 
         <!-- Button Save: to retrieve all the data from the above forms -->
         <div class="panel-footer">
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="submit" class="btn btn-primary"
+              [disabled]="employeeForm.invalid">Save</button>
         </div>
     </div>
 </form>
