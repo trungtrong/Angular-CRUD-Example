@@ -16,7 +16,7 @@ export class CreateEmployeeComponent implements OnInit {
   gender = 'male';
 
   // default value
-  // fname = 'Ngo Trung Trong';
+  // fullName = 'Ngo Trung Trong';
 
   // checkbox checked
   isActive = true;

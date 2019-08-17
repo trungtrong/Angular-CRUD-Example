@@ -7,13 +7,24 @@
         <div class="panel-body">
           <div class="form-group">
             <label for="fullName">Full Name</label>
-            <input name="fname" id="fullName" type="text"
-                  [(ngModel)]="fname" class="form-control"/>
+            <input required name="fullName"
+                  id="fullName" type="text"
+                  [(ngModel)]="fullName" class="form-control"
+                  #fullNameControl="ngModel" />
           </div>
+
+          <!-- Display the value of form validation property -->
+          <p>touched: {{ fullNameControl.touched }}- {{ employeeForm.touched }}</p>
+          <p>untouched: {{ fullNameControl.untouched }} - {{ employeeForm.untouched }}</p>
+          <p>pristine: {{ fullNameControl.pristine }} - {{ employeeForm.pristine }}</p>
+          <p>dirty: {{ fullNameControl.dirty }} - {{ employeeForm.dirty }}</p>
+          <p>valid: {{ fullNameControl.valid }} - {{ employeeForm.valid }}</p>
+          <p>invalid: {{ fullNameControl.invalid }} - {{ employeeForm.invalid }}</p>
 
           <div class="form-group">
               <label for="email">Email</label>
-              <input name="email" id="email" type="text"
+              <input required name="email"
+                     id="email" type="text"
                      [(ngModel)]="email" class="form-control"/>
           </div>
 
