@@ -7,11 +7,13 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    SelectRequiredValidatorDirective
   ],
   imports: [
     BrowserModule,

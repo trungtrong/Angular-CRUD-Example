@@ -85,20 +85,21 @@
 
           <!-- dropdown list: Department field -->
           <div class="form-group"
-            [class.has-error]="department.invalid && department.touched">
+            [class.has-error]="department.errors?.defaultSelected && department.touched">
             <label for="department" class="control-label">
               Department
             </label>
             <select id="departmnet" name="department"
-                    [(ngModel)]="employee.department" class="form-control"
-                    required #department="ngModel" >
-              <option disabled value="">Select Department</option>
+                appSelectValidator="null"
+                [(ngModel)]="employee.department" class="form-control"
+                required #department="ngModel" >
+              <option value="null">Select Department</option>
               <option *ngFor="let dept of departments" [value]="dept.id">
                 {{ dept.name }}
               </option>
             </select>
             <span class="help-block"
-              *ngIf="department.invalid && department.touched">
+              *ngIf="department.errors?.defaultSelected && department.touched">
                 Department is required
             </span>
           </div>
