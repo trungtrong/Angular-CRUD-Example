@@ -48,19 +48,27 @@
                      [(ngModel)]="employee.phoneNumber" class="form-control"/>
           </div>
 
-          <!-- radio : male and female -->
-          <div class="form-group">
-            <label>Gender</label>
+          <!-- radio :Gender( male and female ) -->
+          <div class="form-group"
+            [class.has-error]="gender.invalid && gender.touched">
+            <label class="control-label">Gender</label>
             <div class="form-control">
               <label class="radio-inline">
-                  <input type="radio" name="gender"
-                    value="male" [(ngModel)]="employee.gender"/>Male
+                  <input required type="radio" name="gender"
+                    value="male" [(ngModel)]="employee.gender"
+                    #gender="ngModel"/>Male
               </label>
               <label class="radio-inline">
-                  <input type="radio" name="gender"
-                    value="female" [(ngModel)]="employee.gender"/>Female
+                  <input required type="radio" name="gender"
+                    value="female" [(ngModel)]="employee.gender"
+                    #gender="ngModel"/>Female
               </label>
             </div>
+            <!-- errror message -->
+            <span class="help-block"
+                *ngIf="gender.invalid && gender.touched">
+                Gender is required
+            </span>
           </div>
 
           <!-- checkbox "isActive" field -->

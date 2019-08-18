@@ -16,12 +16,12 @@ export class CreateEmployeeComponent implements OnInit {
   employee: Employee = {
     id: null,
     name: null,
-    gender: 'male',
+    gender: null,
     email: '',
     phoneNumber: null,
     dateOfBirth: null,
     department: null,
-    isActive: true,
+    isActive: null,
     photoPath: null
   };
 
