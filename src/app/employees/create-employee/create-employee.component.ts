@@ -4,6 +4,7 @@ import { Department } from 'src/app/models/department';
 
 // Config themme color
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Employee } from 'src/app/models/employee';
 
 
 @Component({
@@ -12,14 +13,17 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
-  // radio checked
-  gender = 'male';
-
-  // default value
-  // fullName = 'Ngo Trung Trong';
-
-  // checkbox checked
-  isActive = true;
+  employee: Employee = {
+    id: null,
+    name: null,
+    gender: 'male',
+    email: null,
+    phoneNumber: null,
+    dateOfBirth: null,
+    department: null,
+    isActive: true,
+    photoPath: null
+  };
 
   departments: Department[] = [
     { id: 1, name: 'Help Desk'},
@@ -45,11 +49,11 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(empForm: NgForm) {
-    console.log(empForm.value);
-    console.log(empForm);
+  onSubmit(newEmployee: Employee) {
+    console.log(newEmployee);
   }
 
+  // Preview Photo
   togglePreviewPhoto() {
     this.previewPhoto = !this.previewPhoto;
     this.buttonStatus =
