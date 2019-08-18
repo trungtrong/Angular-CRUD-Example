@@ -26,16 +26,17 @@
               [class.has-error]="email.invalid && email.touched"
               [class.has-success]="email.valid">
               <label for="email" class="control-label">Email</label>
-              <input required [email]="employee.email!==''"
-                     name="email" id="email" type="text"
-                     [(ngModel)]="employee.email" class="form-control"
-                     #email="ngModel"/>
+              <input required
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                name="email" id="email" type="text"
+                [(ngModel)]="employee.email" class="form-control"
+                #email="ngModel"/>
               <span class="help-block"
                 *ngIf="email.errors?.required && email.touched">
                 Email is required
               </span>
               <span class="help-block"
-                *ngIf="email.errors?.email && email.touched">
+                *ngIf="email.errors?.pattern && email.touched">
                 Email is invalid
               </span>
           </div>
@@ -52,12 +53,12 @@
             <label>Gender</label>
             <div class="form-control">
               <label class="radio-inline">
-                  <input type="radio" name="gender" value="male"
-                        [(ngModel)]="employee.gender"/>Male
+                  <input type="radio" name="gender"
+                    value="male" [(ngModel)]="employee.gender"/>Male
               </label>
               <label class="radio-inline">
-                  <input type="radio" name="gender" value="female"
-                          [(ngModel)]="employee.gender"/>Female
+                  <input type="radio" name="gender"
+                    value="female" [(ngModel)]="employee.gender"/>Female
               </label>
             </div>
           </div>
