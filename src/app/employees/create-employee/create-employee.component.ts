@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from 'src/app/models/department';
 
 // Config themme color
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Employee } from 'src/app/models/employee';
+import { EmployeeService } from '../employee.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class CreateEmployeeComponent implements OnInit {
   employee: Employee = {
     id: null,
     name: null,
-    gender: null,
+    gender: 'male',
     email: null,
     phoneNumber: null,
     dateOfBirth: null,
@@ -37,20 +38,22 @@ export class CreateEmployeeComponent implements OnInit {
   // 10. Display and hide image of empoyee
   previewPhoto =  false;
   buttonStatus = 'Show';
-  constructor() {
-    this.datePickerConfig = Object.assign({},
-      {
-        containerClass: 'theme-dark-blue',
-        showWeekNumbers: false,
-        dateInputFormat: 'DD/MM/YYYY'
-      });
-  }
+
+  @ViewChild('employeeForm', {static: false}) public createdEmployeeForm: NgForm;
+
+  constructor(private employeeService: EmployeeService) {}
 
   ngOnInit() {
   }
 
-  onSubmit(newEmployee: Employee) {
-    console.log(newEmployee);
+  // submit button
+  onSubmit() {
+    this.employeeService.save(this.createdEmployeeForm.value);
+    this.createdEmployeeForm.reset({
+      gender: 'male',
+      department: 'null',
+      isActive: false
+    });
   }
 
   // Preview Photo
