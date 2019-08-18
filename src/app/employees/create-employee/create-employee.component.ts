@@ -17,11 +17,11 @@ export class CreateEmployeeComponent implements OnInit {
     id: null,
     name: null,
     gender: null,
-    email: '',
+    email: null,
     phoneNumber: null,
     dateOfBirth: null,
-    department: null,
-    isActive: null,
+    department: '',
+    isActive: false,
     photoPath: null
   };
 
