@@ -48,7 +48,16 @@ export class CreateEmployeeComponent implements OnInit {
 
   // submit button
   onSubmit() {
-    this.employeeService.save(this.createdEmployeeForm.value);
+    // save data about employee
+    // Way 1: using ngForm
+    // this.employeeService.save(this.createdEmployeeForm.value);
+
+    // Way 2: using ngModel
+    // have to clone an Object of Employee
+    const newEmployee: Employee = Object.assign({}, this.employee);
+    this.employeeService.save(newEmployee);
+
+    // reset form
     this.createdEmployeeForm.reset({
       gender: 'male',
       department: 'null',
