@@ -1,4 +1,15 @@
-<div class="panel panel-primary" *ngFor="let employee of employees">
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search By Name"
+    style="width: 300px" [(ngModel)]="searchTerm" />
+  <button type="button" class="btn btn-primary"
+      (click)="changeEmployeeName()">
+    Edit Name
+  </button>
+</div>
+
+
+<div class="panel panel-primary"
+    *ngFor="let employee of filteredEmployees">
 
   <div class="panel-heading">
     <h3 class="panel-title">{{ employee.name }}</h3>
