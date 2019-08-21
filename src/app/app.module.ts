@@ -8,12 +8,14 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
+import { DisplayEmployeeComponent } from './employees/display-employee/display-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    SelectRequiredValidatorDirective
+    SelectRequiredValidatorDirective,
+    DisplayEmployeeComponent,
   ],
   imports: [
     BrowserModule,

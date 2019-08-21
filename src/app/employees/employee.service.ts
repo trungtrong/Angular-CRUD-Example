@@ -48,4 +48,11 @@ export class EmployeeService {
   save(employee: Employee) {
     this.listEmployees.push(employee);
   }
+
+  // Bai 21: navagating to employees/id router and retrieve data from id of employee
+
+  // using  this method to provide the employee data at a specific "id"
+  getEmployee(id: number): Employee {
+    return this.listEmployees.find(elem => elem.id === id);
+  }
 }
