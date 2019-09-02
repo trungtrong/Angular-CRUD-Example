@@ -70,8 +70,20 @@
     <button class="btn btn-primary" (click)="editEmployee()">
       Edit
     </button>
-    <button class="btn btn-danger">
+    <button class="btn btn-danger" (click)="confirmDelete=true">
       Delete
     </button>
+
+    <div class="panel-body confirm-container"
+        *ngIf="confirmDelete">
+      <p>Are you sure you want to delete {{employee.name}}?</p>
+      <button class="btn btn-danger" (click)="deleteEmployee()">
+        Yes
+      </button>
+      <button class="btn btn-primary" (click)="confirmDelete=false">
+        No
+      </button>
+    </div>
+
   </div>
 </div>

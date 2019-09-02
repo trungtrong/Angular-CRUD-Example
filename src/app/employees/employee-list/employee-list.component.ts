@@ -28,16 +28,9 @@ export class EmployeeListComponent implements OnInit {
   set searchTerm(value: string) {
     this._searchTerm = value;
     this.filteredEmployees = this.filterEmployees(value);
-  }
 
-  constructor(private employeeService: EmployeeService) {
-  }
-
-  ngOnInit() {
-    this.employees = this.employeeService.getEmployees();
-    // Bai 20 filter
-    // shadow employees array
-    this.filteredEmployees = this.employees;
+    // console.log(this.employees);
+    // console.log(this.filteredEmployees);
   }
 
   // Bai 20 filter
@@ -46,5 +39,24 @@ export class EmployeeListComponent implements OnInit {
     // purpose: employees is consistent with all employees
     return this.employees.filter(employee =>
       employee.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1 );
+  }
+
+  constructor(private _employeeService: EmployeeService) {
+  }
+
+  ngOnInit() {
+    this.employees = this._employeeService.getEmployees();
+    // Bai 20 filter
+    // shadow employees array
+    this.filteredEmployees = this.employees;
+  }
+
+  onDeleteNotification(id: number) {
+    const i = this.filteredEmployees.findIndex(e => e.id === id);
+
+    if (i !== -1) {
+      this.filteredEmployees.splice(i, 1);
+    }
+    //console.log(this.filteredEmployees);
   }
 }
