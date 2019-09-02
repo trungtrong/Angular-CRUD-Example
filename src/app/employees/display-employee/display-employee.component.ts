@@ -16,7 +16,15 @@ export class DisplayEmployeeComponent implements OnInit {
   }
 
   // Bai 21: router
-  onSelect(employeeId: number) {
-    this.router.navigate(['/employees', employeeId]);
+  viewEmployee() {
+    this.router.navigate(['/employees', this.employee.id]);
   }
+
+
+  // Bai 22: edit form
+  editEmployee() {
+    this.router.navigate(['/edit', this.employee.id]);
+  }
+
+
 }

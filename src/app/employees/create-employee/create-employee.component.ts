@@ -6,6 +6,7 @@ import { Department } from 'src/app/models/department';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeService } from '../employee.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,17 +15,8 @@ import { EmployeeService } from '../employee.service';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
-  employee: Employee = {
-    id: null,
-    name: null,
-    gender: 'male',
-    email: null,
-    phoneNumber: null,
-    dateOfBirth: null,
-    department: 'null',
-    isActive: false,
-    photoPath: null
-  };
+  employee: Employee;
+  formTitle: string;
 
   departments: Department[] = [
     { id: 1, name: 'Help Desk'},
@@ -41,9 +33,44 @@ export class CreateEmployeeComponent implements OnInit {
 
   @ViewChild('employeeForm', {static: false}) public createdEmployeeForm: NgForm;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService,
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
+    // Bai 22: edit form
+    // read the route parameter of edit/1...
+    this.route.paramMap.subscribe(parameterMap => {
+      const id = +parameterMap.get('id');
+      this.getEmployee(id);
+    });
+  }
+
+  private getEmployee(id: number) {
+    /*
+    - id = 0: edit/0 => means "create form"
+    => employee = default value
+
+    - id = 1,.. : => means : edit form or update form
+    */
+    if (id === 0) {
+      this.employee = {
+        id: null,
+        name: null,
+        gender: 'Male',
+        email: '',
+        phoneNumber: null,
+        dateOfBirth: null,
+        department: 'null',
+        isActive: false,
+        photoPath: null
+      };
+      this.formTitle = 'Create Employee';
+    } else {
+      this.employee = Object.assign({}, this.employeeService.getEmployee(id));
+      // print listEmployees
+      console.log(this.employeeService.getEmployees());
+      this.formTitle = 'Edit Employee';
+    }
   }
 
   // submit button

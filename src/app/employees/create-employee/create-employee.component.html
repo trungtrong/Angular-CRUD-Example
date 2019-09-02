@@ -1,7 +1,7 @@
 <form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title">Create Employee</h3>
+          <h3 class="panel-title">{{ formTitle }}</h3>
         </div>
 
         <div class="panel-body">
@@ -56,12 +56,12 @@
             <div class="form-control">
               <label class="radio-inline">
                   <input required type="radio" name="gender"
-                    value="male" [(ngModel)]="employee.gender"
+                    value="Male" [(ngModel)]="employee.gender"
                     #gender="ngModel"/>Male
               </label>
               <label class="radio-inline">
                   <input required type="radio" name="gender"
-                    value="female" [(ngModel)]="employee.gender"
+                    value="Female" [(ngModel)]="employee.gender"
                     #gender="ngModel"/>Female
               </label>
             </div>
@@ -95,7 +95,7 @@
                 [(ngModel)]="employee.department" class="form-control"
                 required #department="ngModel" >
               <option value="null">Select Department</option>
-              <option *ngFor="let dept of departments" [value]="dept.id">
+              <option *ngFor="let dept of departments" [value]="dept.name">
                 {{ dept.name }}
               </option>
             </select>
@@ -104,7 +104,6 @@
                 Department is required
             </span>
           </div>
-          {{ department.invalid }} - {{ department.touched }}
 
           <!-- Datepicker:  Date of Birth -->
           <div class="row">
@@ -125,13 +124,15 @@
             <!-- 10.2 : Show/Hide Button-->
           <div>
             <button type="button" class="btn btn-primary"
-                    (click)="togglePreviewPhoto()">
+                    (click)="togglePreviewPhoto()"
+                    *ngIf="employee.photoPath !== '' && employee.photoPath !== null">
               {{ buttonStatus }} Preview
             </button>
           </div>
 
           <div class="form-group">
-            <img [src]="employee.photoPath" height="200" weight="200" *ngIf="previewPhoto" />
+            <img [src]="employee.photoPath" height="200" weight="200"
+            *ngIf="previewPhoto && employee.photoPath !== '' && employee.photoPath !== null" />
           </div>
 
         </div>
