@@ -14,19 +14,19 @@
     + add List-component and Create component into app-routing.module.ts
           ( see step 1 - 6 ) in app-routing
 
-    + <div class="container"> in app.comp.html
-    <nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
-          <li>
-            <a routerLink='list'>List</a>
-          </li>
-          <li>
-              <a routerLink='create'>Create</a>
-          </li>
-        </ul>
-      </nav>
-      <router-outlet></router-outlet>
-    </div>
+  < div class="container"> in app.comp.html
+     < nav class="navbar navbar-default">
+        < ul class="nav navbar-nav">
+         < li>
+            a routerLink='list'>List</a>
+         < /li>
+          < li>
+              < a routerLink='create'>Create</>
+          </>
+        </>
+      < /nav>
+      < router-outlet></>
+    </>
 -----------------------------------------------------------------------
   - Step 6- Create template Driven Form in create-employee.component
 
@@ -174,13 +174,13 @@
 
 -----------------------------------------------------------------------
 
-    STEP 18: <VIEW-> functionality
+    STEP 18: < VIEW-> functionality
 
     1 - In display-employee.comp :  add <button> for each Employee in the list
 
-    <button class="btn btn-primary" (click)="viewEmployee(employee.id)">
+    < button class="btn btn-primary" (click)="viewEmployee(employee.id)">
       View
-    </button>
+    < />
 
     2 -
     constructor(private _router: Router) { }
@@ -194,7 +194,7 @@
         (following routes in app-routing)
     }
 
-    3 -  Get one Employee that is viewed from <employee-service.ts>
+    3 -  Get one Employee that is viewed from < employee-service.ts>
 
       // get one employee to VIEW employee and use to update/edit
       getEmployee(id: number) {
@@ -218,9 +218,9 @@
 
     4 - In each EmployeeDetailComp : add { Back to List }
         <!-- View button -->
-      <button class="btn btn-primary" routerLink="/list">
+      < button class="btn btn-primary" routerLink="/list">
         Back to List
-      </button>
+      < />
 
 
 
@@ -238,7 +238,7 @@
     ]
 -----------------------------------------------------------------------
 
-  STEP 19: Repairing the { ID = null } when <create-> a <new-employee>
+  STEP 19: Repairing the { ID = null } when < create-> a < new-employee>
           employee-service.ts
   save() {
     if (employee.id === null) {
@@ -252,31 +252,31 @@
   }
 
 -----------------------------------------------------------------------
-  STEP 20: <UPDATE->=<EDIT-> task
-  => <we-reuse the {{ CREATE-emp.comp.ts }}>
-   for <edit-form>
+  STEP 20: < UPDATE->=< EDIT-> task
+  => < we-reuse the {{ CREATE-emp.comp.ts }}>
+   for < edit-form>
 
-  1 - add the <path- for app-routing.comp>
+  1 - add the < path- for app-routing.comp>
     const routes: Routes = [
     ...
       {path: 'create', component: CreateEmployeeComponent},
-      {path: 'edit/:id', component: CreateEmployeeComponent}    // for <EDIT-each-employee>
+      {path: 'edit/:id', component: CreateEmployeeComponent}    // for < EDIT-each-employee>
       => That means: edit/0 => createEmpCom with blank data
       => edit/1.. => createEmpComp with data
     ];
 
-  2 - Make a router for <EDIT-button> - in <display-employee.comp>
-    <button class="btn btn-secondary" (click)="editEmployee(employee.id)">
+  2 - Make a router for < EDIT-button> - in < display-employee.comp>
+    < button class="btn btn-secondary" (click)="editEmployee(employee.id)">
       Edit
-    </button>
+    </>
 
-    editEmployee(employeeId: number) {  // go to <router-edit-id>
+    editEmployee(employeeId: number) {  // go to < router-edit-id>
       this._router.navigate(['/edit', employeeId]);
     }
 
   3 -
 
-  3-1- Retrieve path in <create-employee.comp-ts>
+  3-1- Retrieve path in < create-employee.comp-ts>
       => We depend on path of URL => to make CREATE or UPDATE
 
       constructor(private _employeeService: EmployeeService,
@@ -363,17 +363,17 @@
   }
 
 -----------------------------------------------------------------------
-    STEP 21: <DELETE-task>
-  1 - add the <Delete-function-and-button> for <display-employee>
-  <button class="btn btn-secondary" (click)="deleteEmployee(employee.id)">
+    STEP 21: < DELETE-task>
+  1 - add the < Delete-function-and-button> for < display-employee>
+  < button class="btn btn-secondary" (click)="deleteEmployee(employee.id)">
     Delete
-  </button>
+  </>
 
   deleteEmployee(employeeId: number) {
     this._employeeService.deleteEmployee(employeeId);
   }
 
-  2 - create <delete-method> for <employee-service>
+  2 - create < delete-method> for < employee-service>
   deleteEmployee(id: number) {
     const verifiedIndex = this.listEmployees.findIndex(e => e.id === id);
 
@@ -382,25 +382,25 @@
     }
   }
 
-  3 - Using <search-field> and <delete-employee-found>
+  3 - Using < search-field> and < delete-employee-found>
 
-      3-1- Provide <id-> from <display-emp> <when-we click delete> for <employee-list>
-      for <filteredEmployee-changes immediately>
+      3-1- Provide < id-> from < display-emp> < when-we click delete> for < employee-list>
+      for < filteredEmployee-changes immediately>
 
-        - In <display-employee>:
-        @Output() notifyDelete = new EventEmitter<number>();
+        - In < display-employee>:
+        @Output() notifyDelete = new EventEmitter< number>();
 
         deleteEmployee(employeeId: number) {
           this._employeeService.deleteEmployee(employeeId);
 
-          // emit <ID> for <employee-list>
+          // emit < ID> for < employee-list>
           this.notifyDelete.emit(+this.employee.id);
         }
 
-        - In <employee-list> receive <ID-> and refresh <filteredEmployee-data>
-  <div class="card card-primary" *ngFor="let employee of filteredEmployees">
-    <app-display-employee [employee]="employee" (notifyDelete)="onDeleteNotification($event)"></app-display-employee>
-  </div>
+        - In < employee-list> receive < ID-> and refresh < filteredEmployee-data>
+  < div class="card card-primary" *ngFor="let employee of filteredEmployees">
+    < app-display-employee [employee]="employee" (notifyDelete)="onDeleteNotification($event)"></>
+  </>
 
     onDeleteNotification(id: number) {
     // verify that Id
@@ -411,10 +411,10 @@
     }
   }
 -----------------------------------------------------------------------
-    STEP 22: <HTTP-GET> Request  -- <READING-in-CRUD>
-  1 - Make db.json using <json-server --watch db.json>
+    STEP 22: < HTTP-GET> Request  -- < READING-in-CRUD>
+  1 - Make db.json using < json-server --watch db.json>
 
-  2 - <import-HttpClientModule> to { app.module.ts }
+  2 - < import-HttpClientModule> to { app.module.ts }
     import { HttpClientModule } from '@angular/common/http';
 
     - @NgModule({
@@ -422,31 +422,31 @@
         HttpClientModule
       ]
 
-  3 - Using { employee.service.ts } and its functionality is make a <GET-POST-.... request>
+  3 - Using { employee.service.ts } and its functionality is make a < GET-POST-.... request>
 
     3-1 : import { HttpClient } service into {employee.service.ts}
 
     3-2: Inject { HttpClient } Service
     constructor(private _httpClient: HttpClient) {  }
 
-    3-3: make a <GET-request> to get data
+    3-3: make a < GET-request> to get data
 
       private _url = 'http://localhost:3000/employees';
 
-      getEmployees(): Observable<Employee[]> {
-        return this._httpClient.get<Employee[]>(this._url);
+      getEmployees(): Observable< Employee[]> {
+        return this._httpClient.get< Employee[]>(this._url);
       }
 
-    3-4: In <employee-list.resolver.service.ts>
+    3-4: In < employee-list.resolver.service.ts>
     + We don't need to subscribe => Explanation : see in its explanation
 
 -----------------------------------------------------------------------
-    STEP 23: <ERROR-hanlding>: in {Employee.service.ts}
+    STEP 23: < ERROR-hanlding>: in {Employee.service.ts}
 
   NOTE:
    + The server may reject the request and return an HTTP Response with a status code such as 404, 500
 
-  1- Make the <handle-ERROR-method>
+  1- Make the < handle-ERROR-method>
 
   import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
@@ -470,45 +470,45 @@
   return new ErrorObservable('There is a problem with the service. We           are notified and working on it. Please try again later');
   }
 
-  2 - <CATCH-error> while <GET-data>
+  2 - < CATCH-error> while < GET-data>
 
   import { catchError } from 'rxjs/operators';
 
-  getEmployees(): Observable<Employee[]> {
-    return this._httpClient.get<Employee[]>(this._url)
+  getEmployees(): Observable< Employee[]> {
+    return this._httpClient.get< Employee[]>(this._url)
                           .pipe(catchError(this.handleError));
   }
               --------------------------------------
 
-        STEP 23-2: <Handling-angular-Resolver-Errors>
+        STEP 23-2: < Handling-angular-Resolver-Errors>
 IDEA: Using EmployeeListResolverService to emit DATA or ERROR
 
 NOTE: If { EmployeeListResolverService } fails
       => the path { list } is not { activated }
       => the { ListEmployeeComponent } will not displayed
 
-              <Architect->
+              < Architect->
 Component - Resolver Service - Angular Service - Server Side Service
 
   + Server Side Service provide data to Angular Service
   + Angular Service (employee.service ) provide data to Resolver service
   + Resolver Service provide data to component and that component will display
 
-    1 - <employee-list.resolver.service.ts> will emit/provide
+    1 - < -list.resolver.service.ts> will emit/provide
       either data or error
 
   1-1 -
-    + The <resolver-return either an Employee[] or ErrorObservable>
-    + Return { Employee[] } if the <resolver-is-successfull>
+    + The < resolver-return either an Employee[] or ErrorObservable>
+    + Return { Employee[] } if the < resolver-is-successfull>
     + Return { ErrorObservable } if Error occurs
 
   ***
   export class EmployeeListResolverService implements Resolve
-  <Employee[] | ErrorObservable> {
+  < Employee[] | ErrorObservable> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<Employee[] | ErrorObservable> {
+    state: RouterStateSnapshot): Observable< Employee[] | ErrorObservable> {
     return this._employeeService.getEmployees()
       .pipe(
         catchError((err: string) =>
@@ -517,7 +517,7 @@ Component - Resolver Service - Angular Service - Server Side Service
       ).delay(2000) ;;
     }
 
-        2- In <Employee-list.component.ts> will receive either data or error
+        2- In < Employee-list.component.ts> will receive either data or error
 
   constructor(private _employeeService: EmployeeService,
               private _route: ActivatedRoute) {
@@ -536,11 +536,11 @@ Component - Resolver Service - Angular Service - Server Side Service
   }
 
 -----------------------------------------------------------------------
-    STEP 24: <POST-request> to <CREATE-employee>
+    STEP 24: < POST-request> to < CREATE-employee>
 
-  1 -  Change the Save() of <employee-service.ts>
+  1 -  Change the Save() of < employee-service.ts>
 
-  save(employee: Employee): Observable<Employee> {
+  save(employee: Employee): Observable< Employee> {
     if (employee.id === null) {
       // STEP 24
       // http://csharp-video-tutorials.blogspot.com/2018/07/angular-httpclient-post-example.html
@@ -549,7 +549,7 @@ Component - Resolver Service - Angular Service - Server Side Service
       // we don't need to add "id" of the new employee manually
 
       // httpClient.post(url, data, header)
-      return this._httpClient.post<Employee>(this._url, employee, {
+      return this._httpClient.post< Employee>(this._url, employee, {
           headers: new HttpHeaders({
             'Content-Type': 'application/json'
           })
@@ -559,7 +559,7 @@ Component - Resolver Service - Angular Service - Server Side Service
   }
 
 
-  2 - Change submit() in <create-employee.component.ts>
+  2 - Change submit() in < create-employee.component.ts>
 
   onSubmit() {
 
@@ -584,15 +584,15 @@ Component - Resolver Service - Angular Service - Server Side Service
   }
 
 -----------------------------------------------------------------------
-    STEP 25: <PUT-request> to <UPDATE-employee>
-0 - Remove  client <listEmployees-array> data
+    STEP 25: < PUT-request> to < UPDATE-employee>
+0 - Remove  client < listEmployees-array> data
 
 
-1 - Change / Split function createEmployee and updateEmployee in <employee-.service.ts>
+1 - Change / Split function createEmployee and updateEmployee in < employee-.service.ts>
       // POST
-    createEmployee(employee: Employee): Observable<Employee> {
+    createEmployee(employee: Employee): Observable< Employee> {
       // STEP 24
-      return this._httpClient.post<Employee>(this._url, employee, {
+      return this._httpClient.post< Employee>(this._url, employee, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
           })
@@ -604,9 +604,9 @@ Component - Resolver Service - Angular Service - Server Side Service
     // When an update is performed our Server Side Service
     // It does not return anything => { updateEmployee} return void type
 
-    updateEmployee(employee: Employee): Observable<void> {
+    updateEmployee(employee: Employee): Observable< void> {
       // post(url, data, header)
-      return this._httpClient.put<void>(`${this._url}/${employee.id}`, employee, {
+      return this._httpClient.put< void>(`${this._url}/${employee.id}`, employee, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
@@ -615,7 +615,7 @@ Component - Resolver Service - Angular Service - Server Side Service
     }
 
 
-2- change saveEmployee() method of button Save in <create-employee.comp.ts>
+2- change saveEmployee() method of button Save in < create-employee.comp.ts>
 
 
      saveEmployee(): void {
@@ -647,26 +647,26 @@ Component - Resolver Service - Angular Service - Server Side Service
     }
   }
 
-  and <HTML>
-    <form #employeeForm="ngForm" (ngSubmit)="saveEmployee()">
-  and <div class="card card-primary" *ngIf="employee">
-      b/c the <default-employee-data> is undefined
+  and < HTML>
+    < form #employeeForm="ngForm" (ngSubmit)="saveEmployee()">
+  and < div class="card card-primary" *ngIf="employee">
+      b/c the < default-employee-data> is undefined
 
 3- Change/ get one employee to VIEW employee and use to update/edit Form
     getEmployee(id: number) {
       return this.listEmployees.find(elem => elem.id === id);
     }
 
-  Using <GET-method> to get 1 employee depending on its id
+  Using < GET-method> to get 1 employee depending on its id
     to VIEW or use to update/edit Form
 
   // get one employee to VIEW employee and use to update/edit Form
-    getEmployee(id: number): Observable<Employee> {
-      return this._httpClient.get<Employee>(`${this._url}/${id}`)
+    getEmployee(id: number): Observable< Employee> {
+      return this._httpClient.get< Employee>(`${this._url}/${id}`)
           .pipe(catchError(this.handleError));
     }
 
-4- Subscribe getEmployee() in <render-employee>()-method
+4- Subscribe getEmployee() in < render-employee>()-method
 
   renderEmployee(id: number) {
     if (id === 0 || this.currentPath === 'create') {
@@ -682,8 +682,8 @@ Component - Resolver Service - Angular Service - Server Side Service
     }
   }
 
-5 - Subscribe getEmployee() in <employee-detail.comp.ts>
-    // FOR <VIEW-task>
+5 - Subscribe getEmployee() in <  employee-detail.comp.ts>
+    // FOR < VIEW-task>
 
   ngOnInit() {
     const id = this._route.snapshot.paramMap.get('id');
@@ -694,15 +694,15 @@ Component - Resolver Service - Angular Service - Server Side Service
   }
 
 -----------------------------------------------------------------------
-    STEP 26: <DELETE-request> to <delete-task>
+    STEP 26: < DELETE-request> to < delete-task>
 
-  1- In <employee-service.ts>
-    deleteEmployee(id: number): Observable<void> {
-      return this._httpClient.delete<void>(`${this._url}/${id}`)
+  1- In < employee-service.ts>
+    deleteEmployee(id: number): Observable< void> {
+      return this._httpClient.delete< void>(`${this._url}/${id}`)
             .pipe(catchError(this.handleError));
     }
 
-  2 - In  <display-employee.comp.ts>
+  2 - In  < display-employee.comp.ts>
 
     deleteEmployee(employeeId: number) {
       this._employeeService.deleteEmployee(employeeId).subscribe(
@@ -710,7 +710,7 @@ Component - Resolver Service - Angular Service - Server Side Service
         (error) => console.log(error)
     );
 
-    // emit <ID> for <employee-list>
+    // emit < ID> for < employee-list>
       this.notifyDelete.emit(+employeeId);
     }
 </pre>
