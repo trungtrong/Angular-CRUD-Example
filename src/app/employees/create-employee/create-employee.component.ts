@@ -36,6 +36,10 @@ export class CreateEmployeeComponent implements OnInit {
   currentPath = this._route.snapshot.routeConfig.path;
 
   // step 3-3
+  /*
+    Parent interacts with child via local variable
+    https://angular.io/guide/component-interaction#parent-interacts-with-child-via-local-variable
+  */
   @ViewChild('employeeForm') public createdEmployeeForm: NgForm;
 
   constructor(private _employeeService: EmployeeService,
